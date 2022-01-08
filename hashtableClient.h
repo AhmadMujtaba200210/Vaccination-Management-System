@@ -14,16 +14,20 @@ class NodeClient {
 public:
 	string email;
 	T pass_code;
-	string name, address;
+	string name, address, status, id_card, gender, ph;
 	int age;
 	NodeClient* next;
 
-	NodeClient(string key, T pass_code, string add, int age, string name) {
+	NodeClient(string key, T pass_code, string add, int age, string name, string id, string gen, string ph) {
 		this->email = key;
 		this->pass_code = pass_code;
 		this->address = add;
 		this->name = name;
 		this->age = age;
+		this->status = "Non Vaccinated!";
+		this->id_card = id;
+		this->gender = gen;
+		this->ph;
 		next = NULL;
 	}
 	~NodeClient() {
@@ -91,9 +95,9 @@ public:
 			table[i] = NULL;
 		}
 	}
-	void insert(string key, T pass, string add, int age, string nam) {
+	void insert(string key, T pass, string add, int age, string nam, string id, string gen, string ph) {
 		int idx = hashFn(key);
-		NodeClient<T>* n = new NodeClient<T>(key, pass, add, age, nam);
+		NodeClient<T>* n = new NodeClient<T>(key, pass, add, age, nam, id, gen, ph);
 		n->next = table[idx];
 		table[idx] = n;
 		cs++;
@@ -116,12 +120,12 @@ public:
 		}
 	}
 
-	T* search(string key) {
+	NodeClient* search(string key) {
 		int idx = hashFn(key);
 		NodeClient<T>* temp = table[idx];
 		while (temp != NULL) {
 			if (temp->email == key) {
-				return &temp->pass_code;
+				return &temp;
 			}
 		}
 		return NULL;

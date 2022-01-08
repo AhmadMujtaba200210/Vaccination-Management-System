@@ -58,6 +58,7 @@ public:
 						cin >> i;
 						switch (i) {
 						case 1:
+
 							break;
 						case 2:
 							break;

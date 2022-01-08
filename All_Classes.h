@@ -27,6 +27,7 @@ void gotoxy(short y, short x)
 class Patient {
 protected:
 	string name, address, gen, Ph_no, id_card;
+	uint8_t age;
 public:
 	Patient() {}
 	Patient(string nm, string ph, string id, string add, string g) :name(nm), Ph_no(ph), id_card(id), gen(g) {}
@@ -91,33 +92,39 @@ public:
 		enterMember();
 	}
 	void enterMember() {
-		gotoxy(x = 5, y = 55);
-		cout << "Enter Name:"; cin >> name;
-		gotoxy(++x, y);
-		cout << "Enter ID Card Number:"; cin >> id_card;
-		gotoxy(++x, y);
-		cout << "Enter Email:"; cin >> email;
-		gotoxy(++x, y);
-		cout << "Enter Gender:"; cin >> gen;
-		gotoxy(++x, y);
-		cout << "Enter Address:"; cin >> address;
-		gotoxy(++x, y);
-		cout << "Phone Number:"; cin >> Ph_no;
-	}
-	void displayData(string str) {
 
 		gotoxy(x = 5, y = 55);
-		cout << "Name:" << name << endl;
+		cout << "Enter Name:"; getline(cin, name);
 		gotoxy(++x, y);
-		cout << "ID card Number:" << id_card << endl;
+		cout << "Enter ID Card Number:"; getline(cin, id_card);
 		gotoxy(++x, y);
-		cout << "Gender:" << gen << endl;
+		cout << "Enter Gender:"; getline(cin, gen);
 		gotoxy(++x, y);
-		cout << "Status:" << status << endl;
+		cout << "Enter Age:"; cin >> age;
 		gotoxy(++x, y);
-		cout << "Address:" << address << endl;
+		cout << "Enter Address:"; getline(cin, address);
 		gotoxy(++x, y);
-		cout << "Contact Number:" << Ph_no << endl;
+		cout << "Phone Number:"; getline(cin, Ph_no);
+		gotoxy(++x, y);
+		cout << "Login Email:"; getline(cin, email);
+		gotoxy(++x, y);
+		cout << "Login Password:"; getline(cin, password);
+		tableClient.insert(email, password, address, age, name, id_card, gen, Ph_no);
+	}
+	void displayData(string str) {
+		NodeClient<string>* n = tableClient.search(str);
+		gotoxy(x = 5, y = 55);
+		cout << "Name:" << n->name << endl;
+		gotoxy(++x, y);
+		cout << "ID card Number:" << n->id_card << endl;
+		gotoxy(++x, y);
+		cout << "Gender:" << n->gender << endl;
+		gotoxy(++x, y);
+		cout << "Status:" << n->status << endl;
+		gotoxy(++x, y);
+		cout << "Address:" << n->address << endl;
+		gotoxy(++x, y);
+		cout << "Contact Number:" << n->ph << endl;
 	}
 };
 class Country :public Member, Guest {
