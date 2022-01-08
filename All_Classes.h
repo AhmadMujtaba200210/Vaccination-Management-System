@@ -18,6 +18,7 @@ static int total_vac = sino_vac + pfizer_vac + canSino_vac + corona_vac;
 static string chrman, vcchrman, HODirec, HONoti;
 HashTableServer<string> tableServer(13);
 HashTableClient<string> tableClient;
+static string countries[10][2];
 void gotoxy(short y, short x)
 {
 	COORD pos = { x,y };
@@ -137,8 +138,16 @@ public:
 		else if (str == "gujranwala") {}
 
 	}
+
+	void worldStatus() {
+
+		for (int i = 0; i < 10; i++) {
+			cout << countries[i][0] << "   " << countries[i][1];
+		}
+	}
+
 };
-class Country :public Member, Guest {
+class Country :public Member {
 public:
 	void status() {
 		cout << "";
@@ -263,5 +272,42 @@ public:
 		cin >> i;
 
 		tableServer.insert(str, i);
+	}
+	void upWorldStatus() {
+		string str;
+		int i;
+		while (1) {
+			cout << "1.Specific country you wanna update?";
+			cout << "2.All countries?";
+			cin >> i;
+			cin.ignore();
+			switch (i) {
+			case 1:
+				cout << "Enter country name:";
+				getline(cin, str);
+				for (int i = 0; i < 10; i++) {
+					if (str == countries[i][0]) {
+						getline(cin, countries[i][1]);
+						break;
+					}
+
+				}
+				break;
+			case 2:
+				for (int i = 0; i < 10; i++) {
+					cout << countries[i][0] << "::";
+					getline(cin, countries[i][1]);
+				}
+				break;
+			}
+			break;
+		}
+		return;
+	}
+	void upCountryStatus() {
+
+	}
+	void chkApplications() {
+
 	}
 };

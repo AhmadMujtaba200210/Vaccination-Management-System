@@ -151,9 +151,15 @@ public:
 					gotoxy(++x, y);
 					cout << "4.Update Team";
 					gotoxy(++x, y);
-					cout << "5.Add Vaccinated patient.";
+					cout << "5.Add Patient.";
 					gotoxy(++x, y);
-					cout << "6.Logout";
+					cout << "6.Update world status.";
+					gotoxy(++x, y);
+					cout << "7.Update Country status.";
+					gotoxy(++x, y);
+					cout << "8.Check Applicants.";
+					gotoxy(++x, y);
+					cout << "9.Logout";
 					gotoxy(++x, y);
 					cout << ">>  ";
 					cin >> i;
@@ -164,17 +170,14 @@ public:
 						updateVaccines();
 						break;
 					case 2:
-
 						system("cls");
 						disVaccines();
 						break;
 					case 3:
-
 						system("cls");
 						disTeam();
 						break;
 					case 4:
-
 						system("cls");
 						updateTeam();
 						break;
@@ -183,6 +186,18 @@ public:
 						fillPatient();
 						break;
 					case 6:
+						system("cls");
+						upWorldStatus();
+						break;
+					case 7:
+						system("cls");
+						upCountryStatus();
+						break;
+					case 8:
+						system("cls");
+						chkApplications();
+						break;
+					case 9:
 						return;
 					}
 				}
