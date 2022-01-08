@@ -5,43 +5,28 @@
 #include"All_Classes.h"
 using namespace std;
 template<typename T>
-class Node {
+class NodeClient {
 	void gotoxy(short y, short x)
 	{
 		COORD pos = { x,y };
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 	}
 public:
-	string key;
-	T value;
-	string name, vac_centre, date;
+	string email;
+	T pass_code;
+	string name, address;
 	int age;
-	Node* next;
+	NodeClient* next;
 
-	Node(string key, T value) {
-		this->key = key;
-		this->value = value;
+	NodeClient(string key, T pass_code, string add, int age, string name) {
+		this->email = key;
+		this->pass_code = pass_code;
+		this->address = add;
+		this->name = name;
+		this->age = age;
 		next = NULL;
-		insert();
 	}
-
-	void insert() {
-
-		int x, y;
-		gotoxy(x = 8, y = 55);
-		cin.ignore();
-		cout << "Enter Patient Name:"; getline(cin, name);
-		gotoxy(++x, y);
-		cout << "Age:"; cin >> age;
-		cin.ignore();
-		gotoxy(++x, y);
-		cout << "Enter Vaccincation Center:"; getline(cin, vac_centre);
-		gotoxy(++x, y);
-		cout << "Enter Vaccination Date(DD-MM-YY):"; getline(cin, date);
-		gotoxy(++x, y);
-		cout << "Vaccine? "; getline(cin, name);
-	}
-	~Node() {
+	~NodeClient() {
 		if (next != NULL) {
 			delete next;
 		}
@@ -50,7 +35,7 @@ public:
 
 template <typename T>
 class HashTableClient {
-	Node<T>** table;
+	NodeClient<T>** table;
 	int cs; //total entries
 	int ts; //size of table
 
@@ -67,22 +52,22 @@ class HashTableClient {
 	void rehash() {  //Tricky but Interesting
 		//We saved the old Table pointer and will do insertion to the new table
 
-		Node<T>** oldTable = table;
+		NodeClient<T>** oldTable = table;
 		int oldTs = ts;
 		cs = 0;
 		ts = 2 * ts + 1;//increasing table size  // for keeping it prime We added 1
-		table = new Node<T>*[ts];
+		table = new NodeClient<T>*[ts];
 		for (int i = 0; i < ts; i++) {
 			table[i] = NULL;
 		}
 
 		//Copy elements from old table to new table
 		for (int i = 0; i < oldTs; i++) {
-			Node<T>* temp = oldTable[i];
+			NodeClient<T>* temp = oldTable[i];
 			//copying each linklist present in the ith index of old Table into new Table
 			while (temp != NULL) {
-				string key = temp->key;
-				T value = temp->value;
+				string key = temp->email;
+				T value = temp->pass_code;
 				//happen in the new table
 				insert(key, value);
 				temp = temp->next;
@@ -101,14 +86,14 @@ public:
 	HashTableClient(int default_size = 5) {
 		cs = 0;
 		ts = default_size;
-		table = new Node<T>*[ts];
+		table = new NodeClient<T>*[ts];
 		for (int i = 0; i < ts; i++) {
 			table[i] = NULL;
 		}
 	}
-	void insert(string key, T val) {
+	void insert(string key, T pass, string add, int age, string nam) {
 		int idx = hashFn(key);
-		Node<T>* n = new Node<T>(key, val);
+		NodeClient<T>* n = new NodeClient<T>(key, pass, add, age, nam);
 		n->next = table[idx];
 		table[idx] = n;
 		cs++;
@@ -122,9 +107,9 @@ public:
 	void print() {
 		for (int i = 0; i < ts; i++) {
 			cout << "Bucket " << i << " ";
-			Node<T>* temp = table[i];
+			NodeClient<T>* temp = table[i];
 			while (temp != NULL) {
-				cout << temp->key << "->";
+				cout << temp->email << "->";
 				temp = temp->next;
 			}
 			cout << endl;
@@ -132,31 +117,52 @@ public:
 	}
 
 	T* search(string key) {
-		for (int i = 0; i < ts; i++) {
-			Node<T>* temp = table[i];
-			while (temp != NULL) {
-				if (temp->key == key) {
-					return &temp->value;
-				}
+		int idx = hashFn(key);
+		NodeClient<T>* temp = table[idx];
+		while (temp != NULL) {
+			if (temp->email == key) {
+				return &temp->pass_code;
 			}
-			return NULL;
 		}
+		return NULL;
 	}
 
+	bool searchEmail(string key) {
+		int idx = hashFn(key);
+		NodeClient<T>* temp = table[idx];
+		while (temp != NULL) {
+			if (temp->email == key) {
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+	bool searchPass(string key, string pass) {
+		int idx = hashFn(key);
+		NodeClient<T>* temp = table[idx];
+		while (temp != NULL) {
+			if (temp->pass_code == pass) {
+				return 1;
+			}
+		}
+		return 0;
+
+	}
 	bool empty(string key) {
 		int idx = hashFn(key);
-		Node<T>* head_ref = table[idx];
+		NodeClient<T>* head_ref = table[idx];
 		int i = 0;
 		while (head_ref != NULL) {
-			if (head_ref->key == key)
+			if (head_ref->email == key)
 			{
 				// Store head node
-				Node<T>* temp = head_ref;
-				Node<T>* prev = NULL;
+				NodeClient<T>* temp = head_ref;
+				NodeClient<T>* prev = NULL;
 
 				// If head node itself holds
 				// the key to be deleted
-				if (temp != NULL && temp->key == key)
+				if (temp != NULL && temp->email == key)
 				{
 					head_ref = temp->next; // Changed head
 					delete temp;            // free old head
@@ -164,7 +170,7 @@ public:
 				}
 				else
 				{
-					while (temp != NULL && temp->key != key)
+					while (temp != NULL && temp->email != key)
 					{
 						prev = temp;
 						temp = temp->next;

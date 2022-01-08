@@ -23,6 +23,7 @@ void gotoxy(short y, short x)
 	COORD pos = { x,y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
+
 class Patient {
 protected:
 	string name, address, gen, Ph_no, id_card;
@@ -50,6 +51,8 @@ public:
 		cout << "Address:" << address << endl;
 	}
 };
+
+
 class Guest :public Patient {
 protected:
 	string status;
@@ -78,6 +81,8 @@ public:
 		cout << "Status:" << status << endl;
 	}
 };
+
+
 class Member :public Guest {
 	string email, password;
 public:
@@ -120,6 +125,7 @@ class Country :public Member, Guest {
 class World :public Country {
 
 };
+
 class Server : public World {
 protected:
 	string strEml = "test@case.pk";

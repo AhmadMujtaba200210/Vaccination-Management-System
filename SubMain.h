@@ -1,17 +1,18 @@
 #pragma once
-
 #include<iostream>
 #include<string>
 #include"All_Classes.h"
+#include"hashtableClient.h"
 using namespace std;
-
+HashTableClient<string> table;
 class SUBMENU :public Member, Guest, Server {
 	int i = 0;
 	string strEmail;
 	string strPass;
+	string loginEmail;
+	string loginPass;
 public:
-	SUBMENU() {
-	}
+	SUBMENU() {}
 	int choiceClient() {
 		gotoxy(x = 5, y = 55);
 		cout << "1.Login\n";
@@ -26,37 +27,48 @@ public:
 		cin >> i;
 		switch (i) {
 		case 1: {
-			while (1) {
-				system("cls");
-				gotoxy(x = 5, y = 55);
-				cout << "1.Check Your Status\n";
-				gotoxy(++x, y);
-				cout << "2.Check Country status\n";
-				gotoxy(++x, y);
-				cout << "3.Check World status\n";
-				gotoxy(++x, y);
-				cout << "4.Check Near Vaccination Centre\n";
-				gotoxy(++x, y);
-				cout << "5.Any Newest Update\n";
-				gotoxy(++x, y);
-				cout << "6.Apply for Vaccination\n";
-				gotoxy(++x, y);
-				cout << "7.Logout\n";
-				gotoxy(++x, y);
-				cout << ">> ";
-				cin >> i;
-				switch (i) {
-				case 1:
-				case 2:
-				case 3:
-				case 4:
-				case 5:
-				case 6:
-				case 7:
+			gotoxy(x = 3, y = 55);
+			cout << "\t\t\tWelcome to Vaccination Managment System\n";
+			gotoxy(++x, y);
+			cout << "\t\tPlease Enter your Log in ID\n";
+			gotoxy(++x, y);
+			cout << "Email:"; getline(cin, loginEmail);
+			gotoxy(++x, y);
+			if (table.searchEmail(loginEmail)) {
+				cout << "Password:"; getline(cin, loginPass);
+				if (table.searchPass(loginEmail, loginPass)) {
+					while (1) {
+						system("cls");
+						gotoxy(x = 5, y = 55);
+						cout << "1.Check Your Status\n";
+						gotoxy(++x, y);
+						cout << "2.Check Country status\n";
+						gotoxy(++x, y);
+						cout << "3.Check World status\n";
+						gotoxy(++x, y);
+						cout << "4.Check Near Vaccination Centre\n";
+						gotoxy(++x, y);
+						cout << "5.Any Newest Update\n";
+						gotoxy(++x, y);
+						cout << "6.Apply for Vaccination\n";
+						gotoxy(++x, y);
+						cout << "7.Logout\n";
+						gotoxy(++x, y);
+						cout << ">> ";
+						cin >> i;
+						switch (i) {
+						case 1:break;
+						case 2:break;
+						case 3:break;
+						case 4:break;
+						case 5:break;
+						case 6:break;
+						case 7:break;
+						}
+						break;
+					}
 				}
-				break;
 			}
-
 		}
 		case 2: {
 			while (1) {
@@ -73,10 +85,10 @@ public:
 				cout << ">> ";
 				cin >> i;
 				switch (i) {
-				case 1:
-				case 2:
-				case 3:
-				case 4:
+				case 1:break;
+				case 2:break;
+				case 3:break;
+				case 4:break;
 				}
 				break;
 			}

@@ -146,6 +146,7 @@
     <ClInclude Include="hashtableServer.h" />
     <ClInclude Include="hashtableClient.h" />
     <ClInclude Include="key.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="SubMain.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Time.h" />

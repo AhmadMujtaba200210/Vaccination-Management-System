@@ -4,22 +4,22 @@
 #include"All_Classes.h"
 using namespace std;
 template<typename T>
-class Node {
+class NodeServer {
 	void gotoxy(short y, short x)
 	{
 		COORD pos = { x,y };
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 	}
 public:
-	string key;
-	T value;
+	string email;
+	T pass_code;
 	string name, vac_centre, date;
 	int age;
-	Node* next;
+	NodeServer* next;
 
-	Node(string key, T value) {
-		this->key = key;
-		this->value = value;
+	NodeServer(string key, T value) {
+		this->email = key;
+		this->pass_code = value;
 		next = NULL;
 		insert();
 	}
@@ -40,7 +40,7 @@ public:
 		gotoxy(++x, y);
 		cout << "Vaccine? "; getline(cin, name);
 	}
-	~Node() {
+	~NodeServer() {
 		if (next != NULL) {
 			delete next;
 		}
@@ -49,7 +49,7 @@ public:
 
 template <typename T>
 class HashTableServer {
-	Node<T>** table;
+	NodeServer<T>** table;
 	int cs; //total entries
 	int ts; //size of table
 
@@ -66,22 +66,22 @@ class HashTableServer {
 	void rehash() {  //Tricky but Interesting
 		//We saved the old Table pointer and will do insertion to the new table
 
-		Node<T>** oldTable = table;
+		NodeServer<T>** oldTable = table;
 		int oldTs = ts;
 		cs = 0;
 		ts = 2 * ts + 1;//increasing table size  // for keeping it prime We added 1
-		table = new Node<T>*[ts];
+		table = new NodeServer<T>*[ts];
 		for (int i = 0; i < ts; i++) {
 			table[i] = NULL;
 		}
 
 		//Copy elements from old table to new table
 		for (int i = 0; i < oldTs; i++) {
-			Node<T>* temp = oldTable[i];
+			NodeServer<T>* temp = oldTable[i];
 			//copying each linklist present in the ith index of old Table into new Table
 			while (temp != NULL) {
-				string key = temp->key;
-				T value = temp->value;
+				string key = temp->email;
+				T value = temp->pass_code;
 				//happen in the new table
 				insert(key, value);
 				temp = temp->next;
@@ -100,14 +100,14 @@ public:
 	HashTableServer(int default_size = 5) {
 		cs = 0;
 		ts = default_size;
-		table = new Node<T>*[ts];
+		table = new NodeServer<T>*[ts];
 		for (int i = 0; i < ts; i++) {
 			table[i] = NULL;
 		}
 	}
 	void insert(string key, T val) {
 		int idx = hashFn(key);
-		Node<T>* n = new Node<T>(key, val);
+		NodeServer<T>* n = new NodeServer<T>(key, val);
 		n->next = table[idx];
 		table[idx] = n;
 		cs++;
@@ -121,9 +121,9 @@ public:
 	void print() {
 		for (int i = 0; i < ts; i++) {
 			cout << "Bucket " << i << " ";
-			Node<T>* temp = table[i];
+			NodeServer<T>* temp = table[i];
 			while (temp != NULL) {
-				cout << temp->key << "->";
+				cout << temp->email << "->";
 				temp = temp->next;
 			}
 			cout << endl;
@@ -132,10 +132,10 @@ public:
 
 	T* search(string key) {
 		for (int i = 0; i < ts; i++) {
-			Node<T>* temp = table[i];
+			NodeServer<T>* temp = table[i];
 			while (temp != NULL) {
-				if (temp->key == key) {
-					return &temp->value;
+				if (temp->email == key) {
+					return &temp->pass_code;
 				}
 			}
 			return NULL;
@@ -144,18 +144,18 @@ public:
 
 	bool empty(string key) {
 		int idx = hashFn(key);
-		Node<T>* head_ref = table[idx];
+		NodeServer<T>* head_ref = table[idx];
 		int i = 0;
 		while (head_ref != NULL) {
-			if (head_ref->key == key)
+			if (head_ref->email == key)
 			{
 				// Store head node
-				Node<T>* temp = head_ref;
-				Node<T>* prev = NULL;
+				NodeServer<T>* temp = head_ref;
+				NodeServer<T>* prev = NULL;
 
 				// If head node itself holds
 				// the key to be deleted
-				if (temp != NULL && temp->key == key)
+				if (temp != NULL && temp->email == key)
 				{
 					head_ref = temp->next; // Changed head
 					delete temp;            // free old head
@@ -163,7 +163,7 @@ public:
 				}
 				else
 				{
-					while (temp != NULL && temp->key != key)
+					while (temp != NULL && temp->email != key)
 					{
 						prev = temp;
 						temp = temp->next;
