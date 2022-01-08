@@ -158,6 +158,18 @@ class World :public Country {
 };
 
 class Server : public World {
+	void updateCountries() {
+		countries[0][0] = "USA";
+		countries[0][0] = "UK";
+		countries[0][0] = "Dubai";
+		countries[0][0] = "Sauida Arabia";
+		countries[0][0] = "China";
+		countries[0][0] = "Iran";
+		countries[0][0] = "Russia";
+		countries[0][0] = "Australia";
+		countries[0][0] = "New Zealand";
+		countries[0][0] = "India";
+	}
 protected:
 	string strEml = "test@case.pk";
 	string strPasscode = "Dsaoop123";
@@ -274,27 +286,35 @@ public:
 		tableServer.insert(str, i);
 	}
 	void upWorldStatus() {
+		updateCountries();
 		string str;
 		int i;
 		while (1) {
+			gotoxy(x = 5, y = 55);
 			cout << "1.Specific country you wanna update?";
+			gotoxy(++x, y);
 			cout << "2.All countries?";
 			cin >> i;
 			cin.ignore();
 			switch (i) {
 			case 1:
+				gotoxy(++x, y);
 				cout << "Enter country name:";
 				getline(cin, str);
 				for (int i = 0; i < 10; i++) {
 					if (str == countries[i][0]) {
+						gotoxy(++x, y);
+						cout << "Write new number of cases report in " << countries[i][0] << "::";
 						getline(cin, countries[i][1]);
 						break;
 					}
-
 				}
 				break;
 			case 2:
+				gotoxy(++x, y);
+				cout << "Update All countries data.";
 				for (int i = 0; i < 10; i++) {
+					gotoxy(++x, y);
 					cout << countries[i][0] << "::";
 					getline(cin, countries[i][1]);
 				}
