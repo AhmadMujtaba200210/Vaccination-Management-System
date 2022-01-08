@@ -59,7 +59,7 @@ protected:
 public:
 	Guest() {}
 	Guest(string status) :status(status) {}
-	virtual void enterData() {
+	void enterData() {
 		cout << "Enter Name:"; cin >> name;
 		cout << "Enter ID Card Number:"; cin >> id_card;
 		cout << "Enter Gender:"; cin >> gen;
@@ -88,9 +88,9 @@ class Member :public Guest {
 public:
 	Member() {}
 	Member(string em, string pass) :email(em), password(pass) {
-		enterData();
+		enterMember();
 	}
-	void enterData() {
+	void enterMember() {
 		gotoxy(x = 5, y = 55);
 		cout << "Enter Name:"; cin >> name;
 		gotoxy(++x, y);

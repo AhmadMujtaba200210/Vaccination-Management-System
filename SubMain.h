@@ -5,7 +5,7 @@
 #include"hashtableClient.h"
 using namespace std;
 HashTableClient<string> table;
-class SUBMENU :public Member, Guest, Server {
+class SUBMENU :public Server {
 	int i = 0;
 	string strEmail;
 	string strPass;
@@ -57,13 +57,20 @@ public:
 						cout << ">> ";
 						cin >> i;
 						switch (i) {
-						case 1:break;
-						case 2:break;
-						case 3:break;
-						case 4:break;
-						case 5:break;
-						case 6:break;
-						case 7:break;
+						case 1:
+							break;
+						case 2:
+							break;
+						case 3:
+							break;
+						case 4:
+							break;
+						case 5:
+							break;
+						case 6:
+							break;
+						case 7:
+							break;
 						}
 						break;
 					}
@@ -74,26 +81,26 @@ public:
 			while (1) {
 				system("cls");
 				gotoxy(x = 5, y = 55);
-				cout << "1.Check Your Status\n";
+				cout << "1.Check Country Status";
 				gotoxy(++x, y);
-				cout << "2.Check Country status\n";
+				cout << "2.Wanna Apply for Vaccination?? Get Register Now";
 				gotoxy(++x, y);
-				cout << "3.Wanna Apply for Vaccination?? Get Register Now\n";
-				gotoxy(++x, y);
-				cout << "4.Exit\n";
+				cout << "3.Exit\n";
 				gotoxy(++x, y);
 				cout << ">> ";
 				cin >> i;
 				switch (i) {
-				case 1:break;
-				case 2:break;
-				case 3:break;
-				case 4:break;
+				case 1:
+					break;
+				case 2:
+					enterMember();
+					break;
+				case 3:
+					break;
 				}
 				break;
 			}
 		}
-
 		}
 
 		return 0;
