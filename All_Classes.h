@@ -76,7 +76,7 @@ public:
 	string chkStatus() {
 		return status;
 	}
-	virtual void displayData() {
+	void displayDataGuest() {
 		cout << "ID card Number:" << id_card << endl;
 		cout << "Gender:" << gen << endl;
 		cout << "Status:" << status << endl;
@@ -125,6 +125,17 @@ public:
 		cout << "Address:" << n->address << endl;
 		gotoxy(++x, y);
 		cout << "Contact Number:" << n->ph << endl;
+	}
+
+	void centresVacc(string str) {
+		if (str == "islamabad") { cout << ""; }
+		else if (str == "lahore") {}
+		else if (str == "dikhan") {}
+		else if (str == "multan") {}
+		else if (str == "faislabad") {}
+		else if (str == "karachi") {}
+		else if (str == "gujranwala") {}
+
 	}
 };
 class Country :public Member, Guest {

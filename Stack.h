@@ -2,7 +2,7 @@
 #include<iostream>
 using namespace std;
 struct Node {
-	char data;
+	char data = 'a';
 	Node* next = NULL;
 
 };

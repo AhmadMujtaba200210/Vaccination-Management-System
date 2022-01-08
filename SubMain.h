@@ -11,6 +11,7 @@ class SUBMENU :public Server {
 	string strPass;
 	string loginEmail;
 	string loginPass;
+	string city;
 public:
 	SUBMENU() {}
 	int choiceClient() {
@@ -58,20 +59,23 @@ public:
 						cin >> i;
 						switch (i) {
 						case 1:
-
+							displayData(loginEmail);
 							break;
 						case 2:
 							break;
 						case 3:
 							break;
 						case 4:
+							cout << "Enter your City:";
+							getline(cin, city);
+							centresVacc(city);
 							break;
 						case 5:
 							break;
 						case 6:
 							break;
 						case 7:
-							break;
+							return 0;
 						}
 						break;
 					}
