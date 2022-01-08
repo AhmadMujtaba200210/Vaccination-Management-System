@@ -56,6 +56,7 @@ class HashTableClient {
 	void rehash() {  //Tricky but Interesting
 		//We saved the old Table pointer and will do insertion to the new table
 
+
 		NodeClient<T>** oldTable = table;
 		int oldTs = ts;
 		cs = 0;
@@ -71,9 +72,15 @@ class HashTableClient {
 			//copying each linklist present in the ith index of old Table into new Table
 			while (temp != NULL) {
 				string key = temp->email;
-				T value = temp->pass_code;
+				T pass = temp->pass_code;
+				string add = temp->address;
+				string nam = temp->name;
+				string id = temp->email;
+				string gen = temp->gender;
+				string ph = temp->ph;
+				int age = temp->age;
 				//happen in the new table
-				insert(key, value);
+				insert(key, pass, add, age, nam, id, gen, ph);
 				temp = temp->next;
 			}
 
@@ -120,12 +127,12 @@ public:
 		}
 	}
 
-	NodeClient* search(string key) {
+	NodeClient<T>* search(string key) {
 		int idx = hashFn(key);
 		NodeClient<T>* temp = table[idx];
 		while (temp != NULL) {
 			if (temp->email == key) {
-				return &temp;
+				return temp;
 			}
 		}
 		return NULL;

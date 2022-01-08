@@ -57,8 +57,10 @@ public:
 						gotoxy(++x, y);
 						cout << ">> ";
 						cin >> i;
+						cin.ignore();
 						switch (i) {
 						case 1:
+							system("cls");
 							displayData(loginEmail);
 							break;
 						case 2:
@@ -66,6 +68,7 @@ public:
 						case 3:
 							break;
 						case 4:
+							system("cls");
 							cout << "Enter your City:";
 							getline(cin, city);
 							centresVacc(city);
@@ -80,7 +83,20 @@ public:
 						break;
 					}
 				}
+				else {
+					gotoxy(++x, y);
+					cout << "Password Not Matched!\n";
+					gotoxy(++x, y);
+					cout << "(Kindly read Confidential Note Given in Documents)\n";
+				}
 			}
+			else {
+				gotoxy(++x, y);
+				cout << "Email Not Matched!\n";
+				gotoxy(++x, y);
+				cout << "(Kindly read Confidential Note Given in Documents)\n";
+			}
+			break;
 		}
 		case 2: {
 			while (1) {
