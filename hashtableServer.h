@@ -13,7 +13,7 @@ class NodeServer {
 public:
 	string email;
 	T pass_code;
-	string name, vac_centre, date;
+	string name, vac_centre, date, status;
 	int age;
 	NodeServer* next;
 
@@ -39,6 +39,8 @@ public:
 		cout << "Enter Vaccination Date(DD-MM-YY):"; getline(cin, date);
 		gotoxy(++x, y);
 		cout << "Vaccine? "; getline(cin, name);
+		gotoxy(++x, y);
+		cout << "Update Status: "; getline(cin, status);
 	}
 	~NodeServer() {
 		if (next != NULL) {

@@ -104,7 +104,8 @@ public:
 		gotoxy(++x, y);
 		cout << "Phone Number:"; cin >> Ph_no;
 	}
-	void displayData() {
+	void displayData(string str) {
+
 		gotoxy(x = 5, y = 55);
 		cout << "Name:" << name << endl;
 		gotoxy(++x, y);
@@ -120,7 +121,10 @@ public:
 	}
 };
 class Country :public Member, Guest {
-
+public:
+	void status() {
+		cout << "";
+	}
 };
 class World :public Country {
 

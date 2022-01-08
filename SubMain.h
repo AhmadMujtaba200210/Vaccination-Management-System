@@ -91,12 +91,13 @@ public:
 				cin >> i;
 				switch (i) {
 				case 1:
+
 					break;
 				case 2:
 					enterMember();
 					break;
 				case 3:
-					break;
+					return 0;
 				}
 				break;
 			}
