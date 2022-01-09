@@ -2,6 +2,8 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include<vector>
+#include<sstream>
 #include"All_Classes.h"
 using namespace std;
 template<typename T>
@@ -57,7 +59,19 @@ class HashTableClient {
 		}
 		return idx;
 	}
+	string cut(string str) {
+		stringstream ss(str); //convert my_string into string stream
 
+		vector<string> tokens;
+		string temp_str;
+
+		while (getline(ss, temp_str, '@')) { //use comma as delim for cutting string
+			tokens.push_back(temp_str);
+		}
+
+		string strnew = tokens[1];
+		return strnew;
+	}
 	void rehash() {  //Tricky but Interesting
 		//We saved the old Table pointer and will do insertion to the new table
 
@@ -108,7 +122,8 @@ public:
 		}
 	}
 	void insert(string key, T pass, string add, int age, string nam, string id, string gen, string ph) {
-		int idx = hashFn(key);
+		string str = cut(key);
+		int idx = hashFn(str);
 		NodeClient<T>* n = new NodeClient<T>(key, pass, add, age, nam, id, gen, ph);
 		n->next = table[idx];
 		table[idx] = n;

@@ -18,6 +18,7 @@ static string chrman = "PM Imran Khan", vcchrman = "Asad Omer", HODirec = "Lt Ge
 HashTableServer<string> tableServer(13);
 HashTableClient<string> tableClient;
 static string countries[10][2];
+string announcement;
 int gen_key(string key, int ts) {
 	int idx = 0;
 	int power = 1;
@@ -97,7 +98,7 @@ public:
 
 class Member :public Guest {
 	string email, password;
-	string announce;
+
 public:
 	Member() {}
 	Member(string em, string pass) :email(em), password(pass) {
@@ -221,6 +222,14 @@ public:
 		gotoxy(x = 7, y = 55);
 		cout << "Successfully Applied!";
 		gotoxy(++x, y);
+		system("pause");
+	}
+	void readAnn() {
+		string str;
+		ifstream myAnn("Announcement.txt", ios::out);
+		while (!myAnn.eof()) {
+			getline(myAnn, str);
+		}
 		system("pause");
 	}
 };
@@ -447,5 +456,13 @@ public:
 		gotoxy(++x, y);
 		system("pause");
 		return;
+	}
+	void updateAnn() {
+		string str;
+		ofstream myAno("Announcement.txt", ios::trunc | ios::in);
+		cout << "Update new Announcement:";
+		getline(cin, str);
+		myAno << str;
+		system("pause");
 	}
 };

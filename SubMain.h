@@ -78,6 +78,8 @@ public:
 							centresVacc(city);
 							break;
 						case 5:
+							system("cls");
+							readAnn();
 							break;
 						case 6:
 							break;
@@ -170,6 +172,8 @@ public:
 					gotoxy(++x, y);
 					cout << "10.Check Added Patients.";
 					gotoxy(++x, y);
+					cout << "11.Update Announcements";
+					gotoxy(++x, y);
 					cout << "00.Logout";
 					gotoxy(++x, y);
 					cout << ">>  ";
@@ -215,6 +219,10 @@ public:
 					case 10:
 						system("cls");
 						chkPatients();
+						break;
+					case 11:
+						system("cls");
+						updateAnn();
 						break;
 					case 00:
 						return;
