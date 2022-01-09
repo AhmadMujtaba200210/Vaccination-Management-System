@@ -163,7 +163,8 @@ public:
 	}
 
 	bool searchEmail(string key) {
-		int idx = hashFn(key);
+		string str = cut(key);
+		int idx = hashFn(str);
 		NodeClient<T>* temp = table[idx];
 		while (temp != NULL) {
 			if (temp->email == key) {
@@ -174,7 +175,8 @@ public:
 	}
 
 	bool searchPass(string key, string pass) {
-		int idx = hashFn(key);
+		string str = cut(key);
+		int idx = hashFn(str);
 		NodeClient<T>* temp = table[idx];
 		while (temp != NULL) {
 			if (temp->pass_code == pass) {

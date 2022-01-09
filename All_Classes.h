@@ -126,6 +126,8 @@ public:
 		cout << "Login Password:"; getline(cin, password);
 		tableClient.insert(email, password, address, age, name, id_card, gen, Ph_no);
 		myFile << name << "," << id_card << "," << gen << "," << email << "," << password << "," << address << "," << age << "," << Ph_no << status << endl;
+		system("pause");
+		return;
 		//filehandling
 	}
 	void displayData(string str) {
@@ -142,6 +144,8 @@ public:
 		cout << "Address:" << n->address << endl;
 		gotoxy(++x, y);
 		cout << "Contact Number:" << n->ph << endl;
+		system("pause");
+		return;
 	}
 
 	void centresVacc(string str) {
@@ -152,7 +156,7 @@ public:
 			cout << "PIMS Hospital G-8/3, Bhara Kahu, Islamabad \t Contact Numbers \t 051-9261170/ 03332371584" << endl;
 			cout << "Polyclinic, Chakshahzad Islamabad \t Contact Numbers \t 051-9220379/ 03003272441" << endl;
 			cout << "National Institute of Health (NIH) Vaccination Center, Islamabad, G- Kashmir Hwy, 1, Service Road South, G 9/1 G-9, Islamabad \t Contact Numbers 051-9255566/03319816350" << endl;
-
+			system("pause");
 		}
 		else if (str == "lahore") {
 			cout << "";
@@ -161,6 +165,7 @@ public:
 			cout << "National Hospital, DHA Phase-1, Lahore \t Contact Numbers \t 0309-7060786  " << endl;
 			cout << "Data Darbar, Lower Mall, Lahore \t Contact Numbers \t 0324-4673454 " << endl;
 			cout << "United Christian Hospital, Main Boulevard, Gulberg \t Contact Numbers \t 03134073644" << endl;
+			system("pause");
 		}
 		else if (str == "dikhan") {
 			cout << "";
@@ -169,6 +174,7 @@ public:
 			cout << "BHU Maddi Khel " << endl;
 			cout << "BHU Giloty" << endl;
 			cout << "BHU Maddi Khel " << endl;
+			system("pause");
 		}
 		else if (str == "multan") {
 			cout << "GOVT. MUSHTAQ LANG THQ HOSP.JALALPUR PIRWALA" << endl;
@@ -177,6 +183,7 @@ public:
 			cout << "Rural Health Centre Makhdoom Rashid" << endl;
 			cout << "ddho office,jalalpur pirwala" << endl;
 			cout << "Government WAPDA Hospital Multan " << endl;
+			system("pause");
 		}
 		else if (str == "faislabad") {
 			cout << "" << endl;
@@ -185,6 +192,7 @@ public:
 			cout << "THQ HOSPITAL CHAK JGovernment WAPDA Hospital Multan HUMRA" << endl;
 			cout << "THQ HOSPITAL SUMUNDRI " << endl;
 			cout << "THQ Hospital New Building, Tandlianwala" << endl;
+			system("pause");
 		}
 		else if (str == "gujranwala") {
 			cout << "AC office Kamoke " << endl;
@@ -193,6 +201,7 @@ public:
 			cout << "Wapda Hospital, Gujranwala" << endl;
 			cout << "Cantt. General Hospital, Rawali Cantt. Gujranwala " << endl;
 			cout << "Commnuity School Hall, Wapda Town, Gujranwala" << endl;
+			system("pause");
 
 		}
 		else if (str == "peshawar") {
@@ -202,18 +211,11 @@ public:
 			cout << "Bacha Khan Air port" << endl;
 			cout << "Cantt General Hospital Peshawar" << endl;
 			cout << "Clerk Colony/Civil quartar Nothia Qadeem" << endl;
-
+			system("pause");
 		}
+		return;
 	}
 
-
-	void worldStatus() {
-		gotoxy(x = 5, y = 55);
-		for (int i = 0; i < 10; i++) {
-			gotoxy(++x, y);
-			cout << countries[i][0] << "   " << countries[i][1];
-		}
-	}
 	void apply(string str) {
 		ofstream myFile("Applications.csv", ios::app | ios::in);
 		NodeClient<string>* n = tableClient.search(str);
@@ -235,12 +237,37 @@ public:
 };
 class Country :public Member {
 public:
-	void status() {
-		cout << "";
+	void update() {
+
+	}
+
+	void show() {
+
 	}
 };
 class World :public Country {
+public:
+	void update() {
+		string str;
+		ofstream myWorld("World.csv", ios::app, ios::in);
+		cout << "Write countries name:";
+		getline(cin, str);
+		while (_getch() == 27) {
+			getline(cin, str);
 
+		}
+	}
+
+	void worldStatus() {
+		gotoxy(x = 5, y = 55);
+		for (int i = 0; i < 10; i++) {
+			gotoxy(++x, y);
+			cout << countries[i][0] << "   " << countries[i][1];
+		}
+	}
+	void show() {
+
+	}
 };
 
 class Server : public World {

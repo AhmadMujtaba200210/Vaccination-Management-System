@@ -4,7 +4,7 @@
 #include"All_Classes.h"
 #include"hashtableClient.h"
 using namespace std;
-HashTableClient<string> table;
+//HashTableClient<string> tableClient;
 class SUBMENU :public Server {
 	int i = 0;
 	string strEmail;
@@ -37,9 +37,9 @@ public:
 			gotoxy(++x, y);
 			cout << "Email:"; getline(cin, loginEmail);
 			gotoxy(++x, y);
-			if (table.searchEmail(loginEmail)) {
+			if (tableClient.searchEmail(loginEmail)) {
 				cout << "Password:"; getline(cin, loginPass);
-				if (table.searchPass(loginEmail, loginPass)) {
+				if (tableClient.searchPass(loginEmail, loginPass)) {
 					while (1) {
 						system("cls");
 						gotoxy(x = 5, y = 55);
