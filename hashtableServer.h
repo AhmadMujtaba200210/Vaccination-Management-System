@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include"All_Classes.h"
+#include"key.h"
 using namespace std;
 template<typename T>
 class NodeServer {
@@ -15,6 +16,7 @@ public:
 	T pass_code;
 	string name, vac_centre, date, status;
 	int age;
+	string vacc;
 	NodeServer* next;
 
 	NodeServer(string key, T value) {
@@ -38,10 +40,40 @@ public:
 		gotoxy(++x, y);
 		cout << "Enter Vaccination Date(DD-MM-YY):"; getline(cin, date);
 		gotoxy(++x, y);
-		cout << "Vaccine? "; getline(cin, name);
+		cout << "Vaccine? "; getline(cin, vacc);
 		gotoxy(++x, y);
 		cout << "Update Status: "; getline(cin, status);
+		key = hasFn(vacc, vacc.length());
+		switch (key) {
+		case 5: {
+			canSino_vac--;
+			gotoxy(++x, y);
+			system("pause");
+			break;
+		}
+		case 1: {
+			corona_vac--;
+			gotoxy(++x, y);
+			system("pause");
+			break;
+		}
+
+
+		case 4: {
+			pfizer_vac--;
+			gotoxy(++x, y);
+			system("pause");
+			break;
+		}
+		case 6: {
+			sino_vac--;
+			gotoxy(++x, y);
+			system("pause");
+			break;
+		}
+		}
 		//filehandling
+		return;
 	}
 	~NodeServer() {
 		if (next != NULL) {

@@ -166,7 +166,9 @@ public:
 					gotoxy(++x, y);
 					cout << "8.Check Applicants.";
 					gotoxy(++x, y);
-					cout << "9.Check Total Members.";
+					cout << "9.Check Added Members.";
+					gotoxy(++x, y);
+					cout << "10.Check Added Patients.";
 					gotoxy(++x, y);
 					cout << "00.Logout";
 					gotoxy(++x, y);
@@ -209,6 +211,10 @@ public:
 					case 9:
 						system("cls");
 						chkTotalMembers();
+						break;
+					case 10:
+						system("cls");
+						chkPatients();
 						break;
 					case 00:
 						return;

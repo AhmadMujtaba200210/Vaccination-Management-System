@@ -15,7 +15,7 @@ static int pfizer_vac = 50;
 static int canSino_vac = 50;
 static int corona_vac = 50;
 static int total_vac = sino_vac + pfizer_vac + canSino_vac + corona_vac;
-static string chrman, vcchrman, HODirec, HONoti;
+static string chrman = "PM Imran Khan", vcchrman = "Asad Omer", HODirec = "Lt Gen Mamood hassan", HOHealth = "Dr Faisal Sultan";
 HashTableServer<string> tableServer(13);
 HashTableClient<string> tableClient;
 static string countries[10][2];
@@ -215,15 +215,15 @@ class World :public Country {
 class Server : public World {
 	void updateCountries() {
 		countries[0][0] = "USA";
-		countries[0][0] = "UK";
-		countries[0][0] = "Dubai";
-		countries[0][0] = "Sauida Arabia";
-		countries[0][0] = "China";
-		countries[0][0] = "Iran";
-		countries[0][0] = "Russia";
-		countries[0][0] = "Australia";
-		countries[0][0] = "New Zealand";
-		countries[0][0] = "India";
+		countries[1][0] = "UK";
+		countries[2][0] = "Dubai";
+		countries[3][0] = "Sauida Arabia";
+		countries[4][0] = "China";
+		countries[5][0] = "Iran";
+		countries[6][0] = "Russia";
+		countries[7][0] = "Australia";
+		countries[8][0] = "New Zealand";
+		countries[9][0] = "India";
 	}
 protected:
 	string strEml = "test@case.pk";
@@ -319,8 +319,8 @@ public:
 		cout << "Head of Director:";
 		cout << HODirec;
 		gotoxy(++x, y);
-		cout << "Head of notification:";
-		cout << HONoti;
+		cout << "Head of Health Dep:";
+		cout << HOHealth;
 		gotoxy(++x, y);
 		system("pause");
 	}
@@ -336,7 +336,7 @@ public:
 		getline(cin, HODirec);
 		gotoxy(++x, y);
 		cout << "Change Head of notification:";
-		getline(cin, HONoti);
+		getline(cin, HOHealth);
 		gotoxy(++x, y);
 		cout << "Team Updated Succesfully";
 		gotoxy(++x, y);
@@ -355,7 +355,7 @@ public:
 		cin >> i;
 
 		tableServer.insert(str, i);
-		gotoxy(++x, y);
+		gotoxy(x = 14, y);
 		cout << "Patient Added Succesfuly";
 		gotoxy(++x, y);
 		system("pause");
