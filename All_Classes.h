@@ -144,6 +144,7 @@ public:
 		cout << "Address:" << n->address << endl;
 		gotoxy(++x, y);
 		cout << "Contact Number:" << n->ph << endl;
+		gotoxy(++x, y);
 		system("pause");
 		return;
 	}
@@ -268,9 +269,7 @@ public:
 			cout << countries[i][0] << "   " << countries[i][1];
 		}
 	}
-	void show() {
 
-	}
 };
 
 class Server : public World {

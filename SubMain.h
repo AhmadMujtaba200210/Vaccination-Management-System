@@ -14,7 +14,7 @@ class SUBMENU :public Server {
 	string city;
 public:
 	SUBMENU() {}
-	int choiceClient() {
+	void choiceClient() {
 		gotoxy(x = 5, y = 55);
 		cout << "1.Login\n";
 		gotoxy(++x, y);
@@ -69,7 +69,7 @@ public:
 							break;
 						case 3:
 							system("cls");
-							worldStatus();
+							//worldStatus();
 							break;
 						case 4:
 							system("cls");
@@ -82,11 +82,11 @@ public:
 							readAnn();
 							break;
 						case 6:
+							apply(loginEmail);
 							break;
 						case 7:
-							return 0;
+							return;
 						}
-						break;
 					}
 				}
 				else {
@@ -127,14 +127,19 @@ public:
 					enterMember();
 					break;
 				case 3:
-					return 0;
+					exit(3);
 				}
 				break;
 			}
 		}
+		case 3:
+			system("cls");
+			enterMember();
+			break;
+		case 4:
+			exit(3);
 		}
-
-		return 0;
+		return;
 	}
 
 	void choiceServer() {
@@ -241,6 +246,9 @@ public:
 			cout << "Email Not Matched!\n";
 			gotoxy(++x, y);
 			cout << "(Kindly read Confidential Note Given in Documents)\n";
+			gotoxy(++x, y);
+			system("pause");
 		}
+		return;
 	}
 };
