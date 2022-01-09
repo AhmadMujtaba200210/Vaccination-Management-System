@@ -43,35 +43,6 @@ public:
 		cout << "Vaccine? "; getline(cin, vacc);
 		gotoxy(++x, y);
 		cout << "Update Status: "; getline(cin, status);
-		key = hasFn(vacc, vacc.length());
-		switch (key) {
-		case 5: {
-			canSino_vac--;
-			gotoxy(++x, y);
-			system("pause");
-			break;
-		}
-		case 1: {
-			corona_vac--;
-			gotoxy(++x, y);
-			system("pause");
-			break;
-		}
-
-
-		case 4: {
-			pfizer_vac--;
-			gotoxy(++x, y);
-			system("pause");
-			break;
-		}
-		case 6: {
-			sino_vac--;
-			gotoxy(++x, y);
-			system("pause");
-			break;
-		}
-		}
 		//filehandling
 		return;
 	}

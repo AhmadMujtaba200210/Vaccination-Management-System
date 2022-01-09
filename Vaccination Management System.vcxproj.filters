@@ -32,9 +32,6 @@
     <ClInclude Include="SubMain.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="key.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="hashtableServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>

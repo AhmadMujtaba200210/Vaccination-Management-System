@@ -19,6 +19,17 @@ static string chrman = "PM Imran Khan", vcchrman = "Asad Omer", HODirec = "Lt Ge
 HashTableServer<string> tableServer(13);
 HashTableClient<string> tableClient;
 static string countries[10][2];
+int gen_key(string key, int ts) {
+	int idx = 0;
+	int power = 1;
+	for (auto ch : key) {
+		idx = (idx + ch * power) % ts;
+		power = (power * 29) % ts;
+	}
+	return idx;
+}
+
+
 void gotoxy(short y, short x)
 {
 	COORD pos = { x,y };
@@ -239,7 +250,7 @@ public:
 		gotoxy(++x, y);
 		cout << ">>";
 		getline(cin, str);
-		key = hasFn(str, str.length());
+		key = gen_key(str, str.length());
 		switch (key) {
 		case 5: {
 			system("cls");
