@@ -2,10 +2,9 @@
 #include<iostream>
 #include<conio.h>
 #include<Windows.h>
-#include<string.h>
+#include<fstream>
 #include"LinkedList.h"
 #include<windows.h>
-#include"key.h"
 #include<string>
 #include "hashtableServer.h"
 #include "hashtableClient.h"
@@ -68,7 +67,7 @@ public:
 
 class Guest :public Patient {
 protected:
-	string status;
+	string status = "not Vaccinated";
 public:
 	Guest() {}
 	Guest(string status) :status(status) {}
@@ -98,13 +97,14 @@ public:
 
 class Member :public Guest {
 	string email, password;
+	string announce;
 public:
 	Member() {}
 	Member(string em, string pass) :email(em), password(pass) {
 		enterMember();
 	}
 	void enterMember() {
-
+		ofstream myFile("Member.csv", ios::app | ios::in);
 		gotoxy(x = 5, y = 55);
 		cout << "Enter Name:"; getline(cin, name);
 		gotoxy(++x, y);
@@ -113,6 +113,7 @@ public:
 		cout << "Enter Gender:"; getline(cin, gen);
 		gotoxy(++x, y);
 		cout << "Enter Age:"; cin >> age;
+		cin.ignore();
 		cin.ignore();
 		gotoxy(++x, y);
 		cout << "Enter Address:"; getline(cin, address);
@@ -123,6 +124,7 @@ public:
 		gotoxy(++x, y);
 		cout << "Login Password:"; getline(cin, password);
 		tableClient.insert(email, password, address, age, name, id_card, gen, Ph_no);
+		myFile << name << "," << id_card << "," << gen << "," << email << "," << password << "," << address << "," << age << "," << Ph_no << status << endl;
 		//filehandling
 	}
 	void displayData(string str) {
@@ -211,7 +213,16 @@ public:
 			cout << countries[i][0] << "   " << countries[i][1];
 		}
 	}
-
+	void apply(string str) {
+		ofstream myFile("Applications.csv", ios::app | ios::in);
+		NodeClient<string>* n = tableClient.search(str);
+		status = "Applied!";
+		myFile << n->name << "," << n->id_card << "," << n->gender << "," << n->email << "," << "," << age << "," << Ph_no << status << endl;
+		gotoxy(x = 7, y = 55);
+		cout << "Successfully Applied!";
+		gotoxy(++x, y);
+		system("pause");
+	}
 };
 class Country :public Member {
 public:

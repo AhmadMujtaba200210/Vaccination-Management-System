@@ -2,7 +2,6 @@
 #include<iostream>
 #include<string>
 #include"All_Classes.h"
-#include"key.h"
 using namespace std;
 template<typename T>
 class NodeServer {
@@ -12,22 +11,22 @@ class NodeServer {
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 	}
 public:
-	string email;
-	T pass_code;
+	string city;
+	T id_card;
 	string name, vac_centre, date, status;
 	int age;
 	string vacc;
 	NodeServer* next;
 
 	NodeServer(string key, T value) {
-		this->email = key;
-		this->pass_code = value;
+		this->city = key;
+		this->id_card = value;
 		next = NULL;
 		insert();
 	}
 
 	void insert() {
-
+		ofstream myFile("Patient", ios::app | ios::in);
 		int x, y;
 		gotoxy(x = 8, y = 55);
 		cin.ignore();
@@ -43,6 +42,7 @@ public:
 		cout << "Vaccine? "; getline(cin, vacc);
 		gotoxy(++x, y);
 		cout << "Update Status: "; getline(cin, status);
+		myFile << name << "," << age << "," << vacc << "," << vac_centre << "," << status << endl;
 		//filehandling
 		return;
 	}
@@ -91,8 +91,8 @@ class HashTableServer {
 			NodeServer<T>* temp = oldTable[i];
 			//copying each linklist present in the ith index of old Table into new Table
 			while (temp != NULL) {
-				string key = temp->email;
-				T value = temp->pass_code;
+				string key = temp->city;
+				T value = temp->id_card;
 				//happen in the new table
 				insert(key, value);
 				temp = temp->next;
@@ -148,8 +148,8 @@ public:
 		for (int i = 0; i < ts; i++) {
 			NodeServer<T>* temp = table[i];
 			while (temp != NULL) {
-				if (temp->email == key) {
-					return &temp->pass_code;
+				if (temp->city == key) {
+					return &temp->id_card;
 				}
 			}
 			return NULL;
@@ -161,7 +161,7 @@ public:
 		NodeServer<T>* head_ref = table[idx];
 		int i = 0;
 		while (head_ref != NULL) {
-			if (head_ref->email == key)
+			if (head_ref->city == key)
 			{
 				// Store head node
 				NodeServer<T>* temp = head_ref;
@@ -169,7 +169,7 @@ public:
 
 				// If head node itself holds
 				// the key to be deleted
-				if (temp != NULL && temp->email == key)
+				if (temp != NULL && temp->city == key)
 				{
 					head_ref = temp->next; // Changed head
 					delete temp;            // free old head
@@ -177,7 +177,7 @@ public:
 				}
 				else
 				{
-					while (temp != NULL && temp->email != key)
+					while (temp != NULL && temp->city != key)
 					{
 						prev = temp;
 						temp = temp->next;
