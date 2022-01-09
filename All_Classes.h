@@ -102,6 +102,7 @@ public:
 		cout << "Enter Gender:"; getline(cin, gen);
 		gotoxy(++x, y);
 		cout << "Enter Age:"; cin >> age;
+		cin.ignore();
 		gotoxy(++x, y);
 		cout << "Enter Address:"; getline(cin, address);
 		gotoxy(++x, y);
@@ -130,8 +131,7 @@ public:
 	}
 
 	void centresVacc(string str) {
-		if (str == "islamabad") { cout << ""; }
-		else if (str == "lahore") {
+		if (str == "islamabad") {
 			cout << "Quaid e Azam International Hospital, Street 9, G-8/2 G 8/2 G-8, Islamabad \t Contact Numbers \t 051-8449100/03345083009" << endl;
 			cout << "NIRM, Near Murree Express Highway Islamabad \t Contact Numbers \t 051-9262213/03315377687" << endl;
 			cout << "Akbar Niazi Teaching Hospital, Mohran Jejan, Islamabad \t Contact Numbers \t 051-8153000/03335233785" << endl;
@@ -194,8 +194,9 @@ public:
 
 
 	void worldStatus() {
-
+		gotoxy(x = 5, y = 55);
 		for (int i = 0; i < 10; i++) {
+			gotoxy(++x, y);
 			cout << countries[i][0] << "   " << countries[i][1];
 		}
 	}
@@ -248,6 +249,8 @@ public:
 			canSino_vac = canSino_vac + key;
 			gotoxy(++x, y);
 			cout << "Vaccines added successfully";
+			gotoxy(++x, y);
+			system("pause");
 			break;
 		}
 		case 1: {
@@ -258,6 +261,8 @@ public:
 			corona_vac = corona_vac + key;
 			gotoxy(++x, y);
 			cout << "Vaccines added successfully";
+			gotoxy(++x, y);
+			system("pause");
 			break;
 		}
 
@@ -270,6 +275,8 @@ public:
 			pfizer_vac = pfizer_vac + key;
 			gotoxy(++x, y);
 			cout << "Vaccines added successfully";
+			gotoxy(++x, y);
+			system("pause");
 			break;
 		}
 		case 6: {
@@ -280,6 +287,8 @@ public:
 			sino_vac = sino_vac + key;
 			gotoxy(++x, y);
 			cout << "Vaccines added successfully";
+			gotoxy(++x, y);
+			system("pause");
 			break;
 		}
 		}
@@ -296,6 +305,8 @@ public:
 		cout << "CanSino Vaccine:" << canSino_vac << endl << endl;
 		gotoxy(++x, y);
 		cout << "Total Vaccines->" << total_vac << endl;
+		gotoxy(++x, y);
+		system("pause");
 	}
 	void disTeam() {
 		gotoxy(x = 5, y = 55);
@@ -310,6 +321,8 @@ public:
 		gotoxy(++x, y);
 		cout << "Head of notification:";
 		cout << HONoti;
+		gotoxy(++x, y);
+		system("pause");
 	}
 	void updateTeam() {
 		gotoxy(x = 5, y = 55);
@@ -324,6 +337,10 @@ public:
 		gotoxy(++x, y);
 		cout << "Change Head of notification:";
 		getline(cin, HONoti);
+		gotoxy(++x, y);
+		cout << "Team Updated Succesfully";
+		gotoxy(++x, y);
+		system("pause");
 	}
 	void fillPatient() {
 		string i;
@@ -338,7 +355,11 @@ public:
 		cin >> i;
 
 		tableServer.insert(str, i);
-
+		gotoxy(++x, y);
+		cout << "Patient Added Succesfuly";
+		gotoxy(++x, y);
+		system("pause");
+		return;
 	}
 	void upWorldStatus() {
 		updateCountries();
@@ -361,6 +382,10 @@ public:
 						gotoxy(++x, y);
 						cout << "Write new number of cases report in " << countries[i][0] << "::";
 						getline(cin, countries[i][1]);
+						gotoxy(++x, y);
+						cout << "Country Updated Successfully";
+						gotoxy(++x, y);
+						system("pause");
 						break;
 					}
 				}
@@ -373,6 +398,10 @@ public:
 					cout << countries[j][0] << "::";
 					getline(cin, countries[j][1]);
 				}
+				gotoxy(++x, y);
+				cout << "All Country Updated Successfully";
+				gotoxy(++x, y);
+				system("pause");
 				break;
 			}
 			break;
@@ -385,9 +414,15 @@ public:
 	void chkApplications() {
 
 	}
+	void chkPatients() {
+		tableServer.print();
+		gotoxy(++x, y);
+		system("pause");
+		return;
+	}
 	void chkTotalMembers() {
 		tableClient.print();
-
+		gotoxy(++x, y);
 		system("pause");
 		return;
 	}

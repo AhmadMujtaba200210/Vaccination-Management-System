@@ -68,6 +68,8 @@ public:
 						case 2:
 							break;
 						case 3:
+							system("cls");
+							worldStatus();
 							break;
 						case 4:
 							system("cls");
