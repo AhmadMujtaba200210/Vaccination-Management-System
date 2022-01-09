@@ -250,15 +250,18 @@ public:
 	void update() {
 		string str;
 		ofstream myWorld("World.csv", ios::app, ios::in);
-		cout << "Write countries name:";
-		getline(cin, str);
 		while (_getch() == 27) {
+			cout << "Write countrie name:";
 			getline(cin, str);
-
+			myWorld << str << ",";
+			cout << "Enter Total number of cases:";
+			myWorld << str << "\n";
 		}
+		cout << "World Data Updated";
+		system("pause");
+		return;
 	}
-
-	void worldStatus() {
+	void show() {
 		gotoxy(x = 5, y = 55);
 		for (int i = 0; i < 10; i++) {
 			gotoxy(++x, y);
