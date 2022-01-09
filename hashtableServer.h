@@ -41,6 +41,7 @@ public:
 		cout << "Vaccine? "; getline(cin, name);
 		gotoxy(++x, y);
 		cout << "Update Status: "; getline(cin, status);
+		//filehandling
 	}
 	~NodeServer() {
 		if (next != NULL) {
@@ -188,5 +189,7 @@ public:
 		}
 		return 0;
 	}
+
+
 };
 

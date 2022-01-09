@@ -39,6 +39,11 @@ public:
 
 template <typename T>
 class HashTableClient {
+	void gotoxy(short y, short x)
+	{
+		COORD pos = { x,y };
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	}
 	NodeClient<T>** table;
 	int cs; //total entries
 	int ts; //size of table
@@ -116,7 +121,11 @@ public:
 	}
 
 	void print() {
+
+		int x, y;
+		gotoxy(x = 5, y = 55);
 		for (int i = 0; i < ts; i++) {
+			gotoxy(++x, y);
 			cout << "Bucket " << i << " ";
 			NodeClient<T>* temp = table[i];
 			while (temp != NULL) {

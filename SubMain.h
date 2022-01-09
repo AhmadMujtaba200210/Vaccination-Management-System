@@ -26,8 +26,10 @@ public:
 		gotoxy(++x, y);
 		cout << ">> ";
 		cin >> i;
+		cin.ignore();
 		switch (i) {
 		case 1: {
+			system("cls");
 			gotoxy(x = 3, y = 55);
 			cout << "\t\t\tWelcome to Vaccination Managment System\n";
 			gotoxy(++x, y);
@@ -95,6 +97,7 @@ public:
 				cout << "Email Not Matched!\n";
 				gotoxy(++x, y);
 				cout << "(Kindly read Confidential Note Given in Documents)\n";
+				_getch();
 			}
 			break;
 		}
@@ -110,11 +113,13 @@ public:
 				gotoxy(++x, y);
 				cout << ">> ";
 				cin >> i;
+				cin.ignore();
 				switch (i) {
 				case 1:
 
 					break;
 				case 2:
+					system("cls");
 					enterMember();
 					break;
 				case 3:
@@ -159,7 +164,9 @@ public:
 					gotoxy(++x, y);
 					cout << "8.Check Applicants.";
 					gotoxy(++x, y);
-					cout << "9.Logout";
+					cout << "9.Check Total Members.";
+					gotoxy(++x, y);
+					cout << "00.Logout";
 					gotoxy(++x, y);
 					cout << ">>  ";
 					cin >> i;
@@ -198,6 +205,10 @@ public:
 						chkApplications();
 						break;
 					case 9:
+						system("cls");
+						chkTotalMembers();
+						break;
+					case 00:
 						return;
 					}
 				}
