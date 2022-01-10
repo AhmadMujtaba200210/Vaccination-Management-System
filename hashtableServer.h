@@ -26,7 +26,7 @@ public:
 	}
 
 	void insert() {
-		ofstream myFile("Patient.csv", ios::app | ios::in);
+		ofstream myFile("Patient.txt", ios::app | ios::in);
 		int x, y;
 		gotoxy(x = 8, y = 55);
 		cin.ignore();

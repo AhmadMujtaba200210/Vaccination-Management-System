@@ -211,7 +211,7 @@ public:
 						break;
 					case 7:
 						system("cls");
-						upCountryStatus();
+						//upCountryStatus();
 						break;
 					case 8:
 						system("cls");

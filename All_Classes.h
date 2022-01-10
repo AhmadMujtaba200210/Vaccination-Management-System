@@ -105,7 +105,7 @@ public:
 		enterMember();
 	}
 	void enterMember() {
-		ofstream myFile("Member.csv", ios::app | ios::in);
+		ofstream myFile("Member.txt", ios::app | ios::in);
 		gotoxy(x = 5, y = 55);
 		cout << "Enter Name:"; getline(cin, name);
 		gotoxy(++x, y);
@@ -151,21 +151,20 @@ public:
 
 	void centresVacc(string str) {
 		if (str == "islamabad") {
-			cout << "Quaid e Azam International Hospital, Street 9, G-8/2 G 8/2 G-8, Islamabad \t Contact Numbers \t 051-8449100/03345083009" << endl;
-			cout << "NIRM, Near Murree Express Highway Islamabad \t Contact Numbers \t 051-9262213/03315377687" << endl;
-			cout << "Akbar Niazi Teaching Hospital, Mohran Jejan, Islamabad \t Contact Numbers \t 051-8153000/03335233785" << endl;
-			cout << "PIMS Hospital G-8/3, Bhara Kahu, Islamabad \t Contact Numbers \t 051-9261170/ 03332371584" << endl;
-			cout << "Polyclinic, Chakshahzad Islamabad \t Contact Numbers \t 051-9220379/ 03003272441" << endl;
+			cout << "Quaid e Azam International Hospital, Street 9, G-8/2 G 8/2 G-8, Islamabad \t Contact Number: 051-8449100/03345083009" << endl;
+			cout << "NIRM, Near Murree Express Highway Islamabad \t Contact Numbers: 051-9262213/03315377687" << endl;
+			cout << "Akbar Niazi Teaching Hospital, Mohran Jejan, Islamabad \t Contact Numbers: 051-8153000/03335233785" << endl;
+			cout << "PIMS Hospital G-8/3, Bhara Kahu, Islamabad \t Contact Numbers: 051-9261170/ 03332371584" << endl;
+			cout << "Polyclinic, Chakshahzad Islamabad \t Contact Numbers: 051-9220379/ 03003272441" << endl;
 			cout << "National Institute of Health (NIH) Vaccination Center, Islamabad, G- Kashmir Hwy, 1, Service Road South, G 9/1 G-9, Islamabad \t Contact Numbers 051-9255566/03319816350" << endl;
 			system("pause");
 		}
 		else if (str == "lahore") {
-			cout << "";
-			cout << "Indus Hospital, Sabzazar \t Contact Numbers \t 0321-4196605 " << endl;
-			cout << "Indus Hospital, Raiwind \t Contact Numbers \t 0333-9699948  " << endl;
-			cout << "National Hospital, DHA Phase-1, Lahore \t Contact Numbers \t 0309-7060786  " << endl;
-			cout << "Data Darbar, Lower Mall, Lahore \t Contact Numbers \t 0324-4673454 " << endl;
-			cout << "United Christian Hospital, Main Boulevard, Gulberg \t Contact Numbers \t 03134073644" << endl;
+			cout << "Indus Hospital, Sabzazar \t Contact Numbers: 0321-4196605 " << endl;
+			cout << "Indus Hospital, Raiwind \t Contact Numbers: 0333-9699948  " << endl;
+			cout << "National Hospital, DHA Phase-1, Lahore \t Contact Numbers: 0309-7060786  " << endl;
+			cout << "Data Darbar, Lower Mall, Lahore \t Contact Numbers: 0324-4673454 " << endl;
+			cout << "United Christian Hospital, Main Boulevard, Gulberg \tContact Numbers: 03134073644" << endl;
 			system("pause");
 		}
 		else if (str == "dikhan") {
@@ -218,20 +217,28 @@ public:
 	}
 
 	void apply(string str) {
-		ofstream myFile("Applications.csv", ios::app | ios::in);
+		ofstream myFile("Applications.txt", ios::app | ios::in);
 		NodeClient<string>* n = tableClient.search(str);
 		status = "Applied!";
 		myFile << n->name << "," << n->id_card << "," << n->gender << "," << n->email << "," << "," << age << "," << Ph_no << status << endl;
+		system("cls");
 		gotoxy(x = 7, y = 55);
 		cout << "Successfully Applied!";
+		gotoxy(++x, y);
 		gotoxy(++x, y);
 		system("pause");
 	}
 	void readAnn() {
 		string str;
 		ifstream myAnn("Announcement.txt", ios::out);
-		while (!myAnn.eof()) {
-			getline(myAnn, str);
+		if (myAnn.is_open()) {
+			while (!myAnn.eof()) {
+				getline(myAnn, str);
+				cout << "str";
+			}
+		}
+		else {
+			cout << "not opened";
 		}
 		system("pause");
 	}
@@ -269,28 +276,14 @@ public:
 			cout << countries[i][0] << "   " << countries[i][1];
 		}
 	}
-
 };
 
 class Server : public World {
-	void updateCountries() {
-		countries[0][0] = "USA";
-		countries[1][0] = "UK";
-		countries[2][0] = "Dubai";
-		countries[3][0] = "Sauida Arabia";
-		countries[4][0] = "China";
-		countries[5][0] = "Iran";
-		countries[6][0] = "Russia";
-		countries[7][0] = "Australia";
-		countries[8][0] = "New Zealand";
-		countries[9][0] = "India";
-	}
 protected:
 	string strEml = "test@case.pk";
 	string strPasscode = "Dsaoop123";
 
 public:
-
 	void updateVaccines() {
 		string str;
 		int key;
@@ -325,8 +318,6 @@ public:
 			system("pause");
 			break;
 		}
-
-
 		case 4: {
 			system("cls");
 			gotoxy(x = 5, y = 58);
@@ -422,7 +413,6 @@ public:
 		return;
 	}
 	void upWorldStatus() {
-		updateCountries();
 		string str;
 		int i;
 		while (1) {
@@ -468,11 +458,12 @@ public:
 		}
 		return;
 	}
-	void upCountryStatus() {
 
-	}
 	void chkApplications() {
+		ifstream myApp("Applications.txt", ios::out);
+		while (myApp.eof()) {
 
+		}
 	}
 	void chkPatients() {
 		tableServer.print();
