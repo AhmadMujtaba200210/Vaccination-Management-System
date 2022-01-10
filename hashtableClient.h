@@ -152,7 +152,8 @@ public:
 	}
 
 	NodeClient<T>* search(string key) {
-		int idx = hashFn(key);
+		string str = cut(key);
+		int idx = hashFn(str);
 		NodeClient<T>* temp = table[idx];
 		while (temp != NULL) {
 			if (temp->email == key) {
