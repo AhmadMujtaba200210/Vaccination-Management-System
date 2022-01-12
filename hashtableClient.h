@@ -29,7 +29,7 @@ public:
 		this->status = "Non Vaccinated!";
 		this->id_card = id;
 		this->gender = gen;
-		this->ph;
+		this->ph = ph;
 		next = NULL;
 	}
 	~NodeClient() {

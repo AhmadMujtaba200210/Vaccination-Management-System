@@ -12,6 +12,7 @@ class SUBMENU :public Server {
 	string loginEmail;
 	string loginPass;
 	string city;
+	Country* cn;
 public:
 	SUBMENU() {}
 	void choiceClient() {
@@ -66,10 +67,14 @@ public:
 							displayData(loginEmail);
 							break;
 						case 2:
+							system("cls");
+							cn = new Country;
+							cn->show();
 							break;
 						case 3:
 							system("cls");
-							//worldStatus();
+							cn = new World;
+							cn->show();
 							break;
 						case 4:
 							system("cls");
@@ -120,7 +125,9 @@ public:
 				cin.ignore();
 				switch (i) {
 				case 1:
-
+					system("cls");
+					cn = new Country;
+					cn->show();
 					break;
 				case 2:
 					system("cls");
@@ -207,11 +214,13 @@ public:
 						break;
 					case 6:
 						system("cls");
-						upWorldStatus();
+						cn = new World;
+						cn->update();
 						break;
 					case 7:
 						system("cls");
-						//upCountryStatus();
+						cn = new Country;
+						cn->update();
 						break;
 					case 8:
 						system("cls");

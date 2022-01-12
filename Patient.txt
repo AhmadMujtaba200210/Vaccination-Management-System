@@ -1,0 +1,3 @@
+ahmad,34,sinovac,f9,partially
+fasi,21,coronavac,xyz,fully
+areeb,23,sinovac,f9,partially

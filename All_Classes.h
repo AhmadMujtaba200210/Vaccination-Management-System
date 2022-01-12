@@ -125,7 +125,7 @@ public:
 		gotoxy(++x, y);
 		cout << "Login Password:"; getline(cin, password);
 		tableClient.insert(email, password, address, age, name, id_card, gen, Ph_no);
-		myFile << name << "," << id_card << "," << gen << "," << email << "," << password << "," << address << "," << age << "," << Ph_no << status << endl;
+		myFile << name << " " << id_card << " " << gen << " " << email << " " << password << " " << address << " " << age << " " << Ph_no << status << endl;
 		system("pause");
 		return;
 		//filehandling
@@ -219,8 +219,8 @@ public:
 	void apply(string str) {
 		ofstream myFile("Applications.txt", ios::app | ios::in);
 		NodeClient<string>* n = tableClient.search(str);
-		status = "Applied!";
-		myFile << n->name << "," << n->id_card << "," << n->gender << "," << n->email << "," << "," << age << "," << Ph_no << status << endl;
+		n->status = "Applied!";
+		myFile << n->email << endl;
 		system("cls");
 		gotoxy(x = 7, y = 55);
 		cout << "Successfully Applied!";
@@ -232,34 +232,83 @@ public:
 		string str;
 		ifstream myAnn("Announcement.txt", ios::out);
 		if (myAnn.is_open()) {
+			gotoxy(x = 5, y = 55);
+			cout << "Displaying Announcement";
 			while (!myAnn.eof()) {
+				gotoxy(++x, y);
 				getline(myAnn, str);
-				cout << "str";
+				cout << str;
 			}
 		}
 		else {
 			cout << "not opened";
 		}
+		gotoxy(++x, y);
 		system("pause");
 	}
 };
 class Country :public Member {
+	string country;
+	string province[5];
+	string deaths[5], total[5];
 public:
-	void update() {
-
+	virtual void update() {
+		string str, str1;
+		ofstream myFile("Country.txt", ios::in | ios::trunc);
+		if (myFile.is_open()) {
+			gotoxy(x = 5, y = 55);
+			cout << "Enter Country name:";
+			getline(cin, country);
+			gotoxy(++x, y);
+			cout << "Enter total patients:";
+			getline(cin, str);
+			gotoxy(++x, y);
+			cout << "Enter total deaths:";
+			getline(cin, str1);
+			myFile << country << " " << str << " " << str1 << endl;
+			for (int i = 0; i < 5; i++) {
+				gotoxy(++x, y);
+				cout << "Enter province name:";
+				getline(cin, province[i]);
+				gotoxy(++x, y);
+				cout << "Enter number of patients:";
+				getline(cin, total[i]);
+				gotoxy(++x, y);
+				cout << "Enter number of deaths:";
+				getline(cin, deaths[i]);
+				myFile << province[i] << " " << deaths[i] << " " << total[i] << endl;
+			}
+		}
+		gotoxy(++x, y);
+		system("pause");
 	}
 
-	void show() {
-
+	virtual void show() {
+		string str, str1;
+		ifstream myFile("Country.txt", ios::out);
+		if (myFile.is_open()) {
+			gotoxy(x = 5, y = 55);
+			cout << "Displaying data for Pakistan & its Provinces\n";
+			while (myFile) {
+				getline(myFile, str);
+				gotoxy(++x, y);
+				cout << str << '\n';
+			}
+		}
+		else {
+			cout << "Couldn't open file\n";
+		}
+		gotoxy(++x, y);
+		system("pause");
 	}
 };
 class World :public Country {
 public:
 	void update() {
 		string str;
-		ofstream myWorld("World.csv", ios::app, ios::in);
+		ofstream myWorld("World.txt", ios::trunc | ios::in);
 		while (_getch() == 27) {
-			cout << "Write countrie name:";
+			cout << "Write countries name:";
 			getline(cin, str);
 			myWorld << str << ",";
 			cout << "Enter Total number of cases:";
