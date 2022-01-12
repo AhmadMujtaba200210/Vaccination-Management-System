@@ -1,6 +1,6 @@
-Pakistan,456,23
-fedreal 34 234
-sindh 2 235
-punjab 4 67
-kpk 45 890
-balochistan 45 567
+Pakistan 456 23
+Fedreal 34 234
+Sindh 2 235
+Punjab 4 67
+K.P.K 45 890
+Balochistan 45 567

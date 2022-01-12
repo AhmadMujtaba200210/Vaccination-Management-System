@@ -99,6 +99,8 @@ public:
 					cout << "Password Not Matched!\n";
 					gotoxy(++x, y);
 					cout << "(Kindly read Confidential Note Given in Documents)\n";
+					gotoxy(++x, y);
+					system("pause");
 				}
 			}
 			else {
@@ -106,7 +108,8 @@ public:
 				cout << "Email Not Matched!\n";
 				gotoxy(++x, y);
 				cout << "(Kindly read Confidential Note Given in Documents)\n";
-				_getch();
+				gotoxy(++x, y);
+				system("pause");
 			}
 			break;
 		}
@@ -146,7 +149,6 @@ public:
 		case 4:
 			exit(3);
 		}
-		return;
 	}
 
 	void choiceServer() {

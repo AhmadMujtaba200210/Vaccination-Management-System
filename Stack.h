@@ -6,8 +6,8 @@ struct Node {
 	Node* next = NULL;
 
 };
-struct Stack {
-private:
+
+struct stack {
 	Node* top = NULL;
 
 	Node* createNode(char c) {
@@ -25,7 +25,7 @@ private:
 		}
 		return NULL;
 	}
-public:
+
 	void push(char c) {
 		Node* ptr = createNode(c);
 		if (top == NULL) {
@@ -37,12 +37,12 @@ public:
 			ptr->next = top;
 			top = ptr;
 		}
-
 	}
 
 	char pop() {
 		if (top == NULL) {
 			cout << "Stack is empty!" << endl;
+			return '\0';
 		}
 		else {
 			Node* temp = top;
@@ -50,10 +50,19 @@ public:
 			return temp->data;
 		}
 	}
-	void makeReverse(string str) {
-		for (int i = 0; i < str.length(); i++) {
-			push(str[i]);
+
+	char* makeReverse(string str) {
+		//string str2;
+		int j = 0; int i;
+		for (i = 0; i < str.length(); i++) {
+			push(str[i]); j++;
 		}
+		char str2[20];
+		for (i = 0; i < j; i++) {
+			str2[i] = pop();
+		}
+		str2[i] = '\0';
+		return str2;
 	}
 
 
@@ -65,22 +74,4 @@ public:
 		}
 	}
 
-
 };
-
-//int main() {
-//	Stack s;
-//	string str = "Faizan";
-//	for (int i = 0; i < str.length(); i++) {
-//		s.push(str[i]);
-//	}
-//	s.display();
-//
-//	cout << "\n";
-//	str = "aaasad";
-//	for (int i = str.length() - 1; i >= 0; i--)
-//	{
-//		str[i] = s.pop();
-//	}
-//	cout << str;
-//}

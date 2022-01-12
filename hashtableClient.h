@@ -4,8 +4,10 @@
 #include<string>
 #include<vector>
 #include<sstream>
+#include"Stack.h"
 #include"All_Classes.h"
 using namespace std;
+struct stack s;
 template<typename T>
 class NodeClient {
 	void gotoxy(short y, short x)
@@ -22,7 +24,8 @@ public:
 
 	NodeClient(string key, T pass_code, string add, int age, string name, string id, string gen, string ph) {
 		this->email = key;
-		this->pass_code = pass_code;
+		T p = s.makeReverse(pass_code);
+		this->pass_code = p;
 		this->address = add;
 		this->name = name;
 		this->age = age;
@@ -60,6 +63,8 @@ class HashTableClient {
 		return idx;
 	}
 	string cut(string str) {
+		if (str.empty())
+			return "";
 		stringstream ss(str); //convert my_string into string stream
 
 		vector<string> tokens;
@@ -68,7 +73,6 @@ class HashTableClient {
 		while (getline(ss, temp_str, '@')) { //use comma as delim for cutting string
 			tokens.push_back(temp_str);
 		}
-
 		string strnew = tokens[1];
 		return strnew;
 	}
@@ -177,10 +181,12 @@ public:
 
 	bool searchPass(string key, string pass) {
 		string str = cut(key);
+		if (pass == "")return 0;
+		string pass_e = s.makeReverse(pass);
 		int idx = hashFn(str);
 		NodeClient<T>* temp = table[idx];
 		while (temp != NULL) {
-			if (temp->pass_code == pass) {
+			if (temp->pass_code == pass_e) {
 				return 1;
 			}
 		}
