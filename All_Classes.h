@@ -268,7 +268,7 @@ public:
 			myFile << country << " " << str << " " << str1 << endl;
 			for (int i = 0; i < 5; i++) {
 				gotoxy(++x, y);
-				cout << "Enter province name:";
+				cout << "Enter " << i + 1 << " province name : ";
 				getline(cin, province[i]);
 				gotoxy(++x, y);
 				cout << "Enter number of patients:";
@@ -315,10 +315,9 @@ public:
 		cin >> j;
 		string* countries = new string[j];
 		string* total = new string[j];
-		cout << "Write countries name:";
 		for (int i = 0; i < j; i++) {
 			gotoxy(++x, y);
-			cout << "Enter province name:";
+			cout << "Enter " << i + 1 << " country name : ";
 			getline(cin, countries[i]);
 			gotoxy(++x, y);
 			cout << "Enter number of patients:";
