@@ -303,27 +303,52 @@ public:
 	}
 };
 class World :public Country {
+	int j = 0;
+	string countries[5];
+	string total[5];
 public:
+
 	void update() {
 		string str;
 		ofstream myWorld("World.txt", ios::trunc | ios::in);
-		while (_getch() == 27) {
-			cout << "Write countries name:";
-			getline(cin, str);
-			myWorld << str << ",";
-			cout << "Enter Total number of cases:";
-			myWorld << str << "\n";
+		cout << "Enter the number of countries:";
+		cin >> j;
+		string* countries = new string[j];
+		string* total = new string[j];
+		cout << "Write countries name:";
+		for (int i = 0; i < j; i++) {
+			gotoxy(++x, y);
+			cout << "Enter province name:";
+			getline(cin, countries[i]);
+			gotoxy(++x, y);
+			cout << "Enter number of patients:";
+			getline(cin, total[i]);
+			myWorld << countries[i] << "\t" << total[i] << endl;
 		}
+		gotoxy(++x, y);
 		cout << "World Data Updated";
+		gotoxy(++x, y);
 		system("pause");
 		return;
 	}
 	void show() {
 		gotoxy(x = 5, y = 55);
-		for (int i = 0; i < 10; i++) {
-			gotoxy(++x, y);
-			cout << countries[i][0] << "   " << countries[i][1];
+		string str, str1;
+		ifstream myFile("World.txt", ios::out);
+		if (myFile.is_open()) {
+			gotoxy(x = 5, y = 55);
+			cout << "Displaying data for World\n";
+			while (myFile) {
+				getline(myFile, str);
+				gotoxy(++x, y);
+				cout << str << '\n';
+			}
 		}
+		else {
+			cout << "Couldn't open file\n";
+		}
+		gotoxy(++x, y);
+		system("pause");
 	}
 };
 
@@ -459,52 +484,6 @@ public:
 		cout << "Patient Added Succesfuly";
 		gotoxy(++x, y);
 		system("pause");
-		return;
-	}
-	void upWorldStatus() {
-		string str;
-		int i;
-		while (1) {
-			gotoxy(x = 5, y = 55);
-			cout << "1.Specific country you wanna update?";
-			gotoxy(++x, y);
-			cout << "2.All countries?";
-			cin >> i;
-			cin.ignore();
-			switch (i) {
-			case 1:
-				gotoxy(++x, y);
-				cout << "Enter country name:";
-				getline(cin, str);
-				for (int i = 0; i < 10; i++) {
-					if (str == countries[i][0]) {
-						gotoxy(++x, y);
-						cout << "Write new number of cases report in " << countries[i][0] << "::";
-						getline(cin, countries[i][1]);
-						gotoxy(++x, y);
-						cout << "Country Updated Successfully";
-						gotoxy(++x, y);
-						system("pause");
-						break;
-					}
-				}
-				break;
-			case 2:
-				gotoxy(++x, y);
-				cout << "Update All countries data.";
-				for (int j = 0; j < 10; j++) {
-					gotoxy(++x, y);
-					cout << countries[j][0] << "::";
-					getline(cin, countries[j][1]);
-				}
-				gotoxy(++x, y);
-				cout << "All Country Updated Successfully";
-				gotoxy(++x, y);
-				system("pause");
-				break;
-			}
-			break;
-		}
 		return;
 	}
 
